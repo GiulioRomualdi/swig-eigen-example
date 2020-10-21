@@ -359,35 +359,39 @@
     $1 = PyList_Check($input) && ((PyList_Size($input) == 0) || is_array(PyList_GetItem($input, 0)));
   }
 
-%typemap(in, fragment="Eigen_Fragments") const Eigen::Ref<const CLASS >& (CLASS temp)
+%typemap(in, fragment="Eigen_Fragments") const Eigen::Ref<const CLASS >& ()
 {
-  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
+    CLASS tempClass;
+  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&tempClass, $input))
     SWIG_fail;
-  Eigen::Ref<const CLASS > temp_ref(temp);
+  Eigen::Ref<const CLASS > temp_ref(tempClass);
   $1 = &temp_ref;
 }
 
-%typemap(in, fragment="Eigen_Fragments") const Eigen::Ref<CLASS >& (CLASS temp)
+%typemap(in, fragment="Eigen_Fragments") const Eigen::Ref<CLASS >& ()
 {
-  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
+  CLASS tempClass;
+  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&tempClass, $input))
     SWIG_fail;
-  Eigen::Ref<CLASS > temp_ref(temp);
+  Eigen::Ref<CLASS > temp_ref(tempClass);
   $1 = &temp_ref;
 }
 
-%typemap(in, fragment="Eigen_Fragments") Eigen::Ref<const CLASS > (CLASS temp)
+%typemap(in, fragment="Eigen_Fragments") Eigen::Ref<const CLASS > ()
 {
-  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
+  CLASS tempClass;
+  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&tempClass, $input))
     SWIG_fail;
-  Eigen::Ref<const CLASS > temp_ref(temp);
+  Eigen::Ref<const CLASS > temp_ref(tempClass);
   $1 = temp_ref;
 }
 
-%typemap(in, fragment="Eigen_Fragments") Eigen::Ref<CLASS > (CLASS temp)
+%typemap(in, fragment="Eigen_Fragments") Eigen::Ref<CLASS > ()
 {
-  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
+  CLASS tempClass;
+  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&tempClass, $input))
     SWIG_fail;
-  Eigen::Ref<CLASS > temp_ref(temp);
+  Eigen::Ref<CLASS > temp_ref(tempClass);
   $1 = temp_ref;
 }
 
