@@ -371,8 +371,25 @@
 {
   if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
     SWIG_fail;
-  Eigen::Ref<const CLASS > temp_ref(temp);
+  Eigen::Ref<CLASS > temp_ref(temp);
   $1 = &temp_ref;
 }
+
+%typemap(in, fragment="Eigen_Fragments") Eigen::Ref<const CLASS > (CLASS temp)
+{
+  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
+    SWIG_fail;
+  Eigen::Ref<const CLASS > temp_ref(temp);
+  $1 = temp_ref;
+}
+
+%typemap(in, fragment="Eigen_Fragments") Eigen::Ref<CLASS > (CLASS temp)
+{
+  if (!ConvertFromNumpyToEigenMatrix<CLASS >(&temp, $input))
+    SWIG_fail;
+  Eigen::Ref<CLASS > temp_ref(temp);
+  $1 = temp_ref;
+}
+
 
 %enddef
