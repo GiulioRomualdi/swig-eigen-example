@@ -1,10 +1,16 @@
 #include <foo.h>
 #include <iostream>
 
-void FooClass::setVector(const Eigen::Ref<const Eigen::Vector4d>& v)
+void FooClass::setVectorConstRef(const Eigen::Ref<const Eigen::Vector4d>& v)
 {
     this->v = v;
-    std::cout << this->v << std::endl;
+    std::cout << "Method with const ref "<< this->v << std::endl;
+}
+
+void FooClass::setVectorCopy(Eigen::Ref<const Eigen::Vector4d> v)
+{
+    this->v = v;
+    std::cout << "Method with copy "<< this->v << std::endl;
 }
 
 void FooClass::printDouble(double v)
