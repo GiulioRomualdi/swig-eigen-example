@@ -3,7 +3,7 @@
 # GNU Lesser General Public License v2.1 or any later version.
 
 
-set(CMAKE_SWIG_FLAGS "-Wextra;-module;Foo;-threads")
+set(CMAKE_SWIG_FLAGS "-Wextra;-module;Foo;-threads;-newvwm")
 
 
 find_package(PythonInterp 3.6 REQUIRED)
